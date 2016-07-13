@@ -1,0 +1,34 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-ajax/iron-ajax.html">
+<link rel="import" href="../oc-core-utils/oc-api-provider-behaviour.html">
+
+<!--
+`oc-settingtags-api`
+Element to consume Ordercloud setting tags (setting categories)
+
+@demo demo/index.html 
+-->
+
+<dom-module id="oc-settingtags-api">
+  <template>
+    <iron-ajax id="getSettingTags"></iron-ajax>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'oc-settingtags-api',
+      behaviors: [OC.Behaviours.ApiProvider],
+
+      /**
+       * Retrieve all setting tags
+       *
+       * @return {Promise}
+       */
+      getSettingTags: function() {
+        this.$.getSettingTags.url = this._url('setting/tags');
+        return this._generateRequest(this.$.getSettingTags);
+      },
+
+    });
+  </script>
+</dom-module>
